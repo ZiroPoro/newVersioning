@@ -7,11 +7,12 @@ class TaskManager:
     def __init__(self):
         self.tasks = []
     
-    def add_task(self, task_description):
+    def add_task(self, task_description, priority='medium'):
         """Add a new task to the list"""
         task = {
             'id': len(self.tasks) + 1,
             'description': task_description,
+            'priority': priority,
             'completed': False
         }
         self.tasks.append(task)
@@ -25,15 +26,24 @@ class TaskManager:
                 return task
         return None
     
-    def list_tasks(self):
-        """List all tasks"""
-        if not self.tasks:
+    def list_tasks(self, filter_completed=None, filter_priority=None):
+        """List all tasks with optional filtering"""
+        filtered_tasks = self.tasks
+        
+        if filter_completed is not None:
+            filtered_tasks = [t for t in filtered_tasks if t['completed'] == filter_completed]
+        
+        if filter_priority:
+            filtered_tasks = [t for t in filtered_tasks if t.get('priority', 'medium') == filter_priority]
+        
+        if not filtered_tasks:
             print("No tasks found.")
             return
         
-        for task in self.tasks:
+        for task in filtered_tasks:
             status = "✓" if task['completed'] else "○"
-            print(f"{status} [{task['id']}] {task['description']}")
+            priority = task.get('priority', 'medium')
+            print(f"{status} [{task['id']}] [{priority.upper()}] {task['description']}")
     
     def remove_task(self, task_id):
         """Remove a task from the list"""
@@ -45,7 +55,7 @@ def main():
     manager = TaskManager()
     
     print("Welcome to Task Manager!")
-    print("Commands: add, list, complete, remove, exit")
+    print("Commands: add, list, complete, remove, export, exit")
     
     while True:
         command = input("\nEnter command: ").strip().lower()
@@ -55,10 +65,22 @@ def main():
             break
         elif command == "add":
             description = input("Enter task description: ")
-            manager.add_task(description)
+            priority = input("Enter priority (low/medium/high, default: medium): ").strip().lower() or 'medium'
+            if priority not in ['low', 'medium', 'high']:
+                priority = 'medium'
+            manager.add_task(description, priority)
             print("Task added successfully!")
         elif command == "list":
-            manager.list_tasks()
+            filter_type = input("Filter by (completed/incomplete/priority/all, default: all): ").strip().lower() or 'all'
+            if filter_type == 'completed':
+                manager.list_tasks(filter_completed=True)
+            elif filter_type == 'incomplete':
+                manager.list_tasks(filter_completed=False)
+            elif filter_type == 'priority':
+                priority = input("Enter priority (low/medium/high): ").strip().lower()
+                manager.list_tasks(filter_priority=priority)
+            else:
+                manager.list_tasks()
         elif command == "complete":
             try:
                 task_id = int(input("Enter task ID: "))
@@ -75,8 +97,12 @@ def main():
                 print("Task removed successfully!")
             except ValueError:
                 print("Invalid task ID!")
+        elif command == "export":
+            filename = input("Enter filename (default: tasks.txt): ").strip() or 'tasks.txt'
+            if manager.export_tasks(filename):
+                print(f"Tasks exported to {filename} successfully!")
         else:
-            print("Unknown command. Try: add, list, complete, remove, exit")
+            print("Unknown command. Try: add, list, complete, remove, export, exit")
 
 
 if __name__ == "__main__":
