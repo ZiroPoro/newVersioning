@@ -7,11 +7,12 @@ class TaskManager:
     def __init__(self):
         self.tasks = []
     
-    def add_task(self, task_description):
+    def add_task(self, task_description, priority='medium'):
         """Add a new task to the list"""
         task = {
             'id': len(self.tasks) + 1,
             'description': task_description,
+            'priority': priority,
             'completed': False
         }
         self.tasks.append(task)
@@ -33,7 +34,8 @@ class TaskManager:
         
         for task in self.tasks:
             status = "✓" if task['completed'] else "○"
-            print(f"{status} [{task['id']}] {task['description']}")
+            priority = task.get('priority', 'medium')
+            print(f"{status} [{task['id']}] [{priority.upper()}] {task['description']}")
     
     def remove_task(self, task_id):
         """Remove a task from the list"""
@@ -55,7 +57,10 @@ def main():
             break
         elif command == "add":
             description = input("Enter task description: ")
-            manager.add_task(description)
+            priority = input("Enter priority (low/medium/high, default: medium): ").strip().lower() or 'medium'
+            if priority not in ['low', 'medium', 'high']:
+                priority = 'medium'
+            manager.add_task(description, priority)
             print("Task added successfully!")
         elif command == "list":
             manager.list_tasks()
