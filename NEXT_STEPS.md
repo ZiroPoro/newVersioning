@@ -73,7 +73,7 @@ This project is developed as part of the DevSecOps course assignment.
 **Developer:** [Ваше имя]
 **Course:** DevSecOps
 **Institution:** [Название учебного заведения]
-**GitHub:** https://github.com/f4cax
+**GitHub:** https://github.com/ZiroPoro
 ```
 
 #### Страница "Tasks":
@@ -82,12 +82,10 @@ This project is developed as part of the DevSecOps course assignment.
 
 This section contains a list of tasks/issues for the project:
 
-1. [Issue #1: ...](https://github.com/f4cax/task-manager/issues/1)
-2. [Issue #2: ...](https://github.com/f4cax/task-manager/issues/2)
-3. [Issue #3: ...](https://github.com/f4cax/task-manager/issues/3)
-4. [Issue #4: ...](https://github.com/f4cax/task-manager/issues/4)
-
-*(Замените на реальные ссылки на ваши issues)*
+1. [Issue #1](https://github.com/ZiroPoro/newVersioning/issues/1)
+2. [Issue #2](https://github.com/ZiroPoro/newVersioning/issues/2)
+3. [Issue #3](https://github.com/ZiroPoro/newVersioning/issues/3)
+4. [Issue #4](https://github.com/ZiroPoro/newVersioning/issues/4)
 ```
 
 ### 3. Добавить логотип (изображение)
@@ -106,7 +104,7 @@ git push origin master
 
 ### 4. Сделать скриншот Network вкладки - ОБЯЗАТЕЛЬНО!
 
-1. В репозитории на GitHub перейдите на вкладку **Insights** → **Network** (или просто введите в адресной строке: `https://github.com/f4cax/task-manager/network`)
+1. В репозитории на GitHub перейдите на вкладку **Insights** → **Network** (или просто введите в адресной строке: `https://github.com/ZiroPoro/newVersioning/network`)
 2. Сделайте скриншот всей схемы ветвления (убедитесь, что видна вся структура: master, develop, feature ветки)
 3. Сохраните скриншот как `network-diagram.png`
 4. Добавьте в репозиторий:
@@ -118,16 +116,16 @@ git push origin master
 
 ### 5. Создать форк - ОБЯЗАТЕЛЬНО!
 
-1. Создайте **НОВЫЙ** репозиторий на GitHub (например, `task-manager-fork`)
+1. Создайте **НОВЫЙ** репозиторий на GitHub (например, `newVersioning-fork`)
 2. В локальной папке выполните:
 ```bash
 # Создайте копию вашего проекта
 cd ..
-git clone https://github.com/f4cax/task-manager.git task-manager-fork
-cd task-manager-fork
+git clone https://github.com/ZiroPoro/newVersioning.git newVersioning-fork
+cd newVersioning-fork
 
 # Измените remote на новый репозиторий
-git remote set-url origin https://github.com/f4cax/task-manager-fork.git
+git remote set-url origin https://github.com/ZiroPoro/newVersioning-fork.git
 
 # Загрузите все ветки и теги
 git push -u origin master
@@ -144,7 +142,7 @@ git push --tags
 
 Successfully completed Git Flow branching workflow project. Confidently use GitHub for version control, issue tracking, and collaborative development.
 
-Project: https://github.com/f4cax/task-manager
+Project: https://github.com/ZiroPoro/newVersioning
 ```
 
 И добавьте ссылку на резюме в ваш GitHub профиль (Settings → Profile → Website).
